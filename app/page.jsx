@@ -1,4 +1,5 @@
 import Feed from "@components/Feed";
+import { connectToDB } from "@utils/database";
 
 function Home() {
   return (

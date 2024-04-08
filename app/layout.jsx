@@ -14,15 +14,17 @@ const Layout = ({children}) => {
             <link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&display=swap" rel="stylesheet" />
         </head>
         <body>
-            <div className='main'>
-                <div className='gradient' />
-            </div>
+            <Provider>
+                <div className='main'>
+                    <div className='gradient' />
+                </div>
 
-            <main className='app'>
-                <Nav />
-                
-                {children}
-            </main>
+                <main className='app'>
+                    <Nav />
+                    
+                    {children}
+                </main>
+            </Provider>
         </body>
     </html>
   )
