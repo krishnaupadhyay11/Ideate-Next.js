@@ -21,7 +21,6 @@ const Layout = ({children}) => {
 
                 <main className='app'>
                     <Nav />
-                    
                     {children}
                 </main>
             </Provider>
