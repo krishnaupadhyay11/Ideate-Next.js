@@ -38,11 +38,13 @@ export const PATCH = async (req, {params}) => {
     }
 }
 
-export const DELETE = async () => {
+//DELETE
+export const DELETE = async (req, {params}) => {
     try{
         await connectToDB();
 
-        await Prompt.findByIdAndDelete(prompt.id);
+        await Prompt.findByIdAndDelete(params.id)
+        .then(console.log('raamdone')) ;
 
         return new Response('Prompt deleted successfully.', {status: 200})
     } catch(error){

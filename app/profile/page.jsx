@@ -33,7 +33,7 @@ export default function ProfilePage() {
     if(hasConfirmed){
       try{
         await fetch(`/api/prompt/${post._id.toString()}`, {
-          method: 'DELETE',
+          method: 'DELETE'
         })
 
         // const filteredPosts = myPosts.filter((p) => p._id !== post._id);
