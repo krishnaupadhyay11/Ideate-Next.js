@@ -36,8 +36,7 @@ export default function ProfilePage() {
           method: 'DELETE'
         })
 
-        // const filteredPosts = myPosts.filter((p) => p._id !== post._id);
-        // setMyPosts(filteredPosts)
+        setMyPosts(myPosts.filter((p) => p._id !== post._id));
       } catch(error){
         console.log(error);
       }

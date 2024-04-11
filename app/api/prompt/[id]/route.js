@@ -39,7 +39,7 @@ export const PATCH = async (req, {params}) => {
 }
 
 //DELETE
-export const DELETE = async (req, {params}) => {
+export const DELETE = async (rkstrm, {params}) => {
     try{
         await connectToDB();
 
