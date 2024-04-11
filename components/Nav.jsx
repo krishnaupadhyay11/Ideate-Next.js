@@ -1,12 +1,14 @@
 "use client";
 
-import Link from 'next/link'
-import Image from 'next/image'
-import { useState, useEffect } from 'react'
-import { signIn, signOut, useSession, getProviders } from 'next-auth/react'
+import Link from 'next/link';
+import Image from 'next/image';
+import { useState, useEffect } from 'react';
+import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 export default function Nav() {
     const {data: session} = useSession();
+    const router = useRouter();
     
     const [providers, setProviders] = useState(null);
     const [toggleDropdown, setToggleDropdown] = useState(false);
@@ -44,8 +46,8 @@ export default function Nav() {
                         alt='avatar'
                         width={30}
                         height={30}
-                        onClick={()=>{}}
-                        className='rounded-full'
+                        onClick={() => router.push('/profile')}
+                        className='rounded-full profile-image'
                     />
                 </div>
             ) : (
