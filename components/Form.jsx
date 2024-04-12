@@ -33,7 +33,7 @@ export default function Form({type, post, setPost, submitting, handleSubmit}) {
           </Link>
 
           <button type='submit' disabled={submitting} className='px-5 py-2 text-sm bg-orange-500 rounded-full text-white'>
-            {submitting ? `${type.slice(0,-1)}ing` : type}
+            {submitting ? `${type}...` : type}
           </button>
         </div>
 
