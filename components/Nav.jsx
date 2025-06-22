@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
-export default function Nav() {
+const Nav = () => {
     const {data: session} = useSession();
     const router = useRouter();
     
@@ -14,7 +14,7 @@ export default function Nav() {
     const [toggleDropdown, setToggleDropdown] = useState(false);
 
     useEffect(() => {
-        async function settingProviders(){
+        const settingProviders = async () =>{
             const response = await getProviders()
 
             setProviders(response)
@@ -26,7 +26,7 @@ export default function Nav() {
       <nav className='w-full flex-between mb-16 pt-4'>
         <Link href='/' className='flex gap-2 flex-center'>
             <Image src='/assets/images/logo.svg' alt='ramram' width={30} height={30} className='object-contain'/>
-            <p className='max-md:hidden text-black font font-bold font-satoshi'>MPrompts - MonetizeForPrem</p>
+            <p className='text-black font font-bold font-satoshi'>Ideate</p>
         </Link>
 
         {/* Desktop Nav */}
@@ -129,3 +129,5 @@ export default function Nav() {
       </nav>
     )
 }
+
+export default Nav

@@ -1,8 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
 import PromptCard from './PromptCard';
+import { MyContext } from './Context';
+import SignIn from './SignIn';
 
 const PromptCardList = ({data, handleTagClick}) => {
   return (
@@ -19,11 +21,22 @@ const PromptCardList = ({data, handleTagClick}) => {
 }
 
 export default function Feed() {
-  const [searchText, setSearchText] = useState('');
   const [posts, setPosts] = useState([]);
+  const [allPosts, setAllPosts] = useState([])
+
+  const {sessionOn} = useContext(MyContext);
 
   function handleSearchChange(e){
-
+    if (e.target.value !== '') {
+      const filteredPosts = posts.filter(post => 
+        post.tag.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        post.creator.username.toLowerCase().includes(e.target.value.toLowerCase())
+      );
+      setPosts(filteredPosts);
+    }
+    else {
+      setPosts(allPosts);
+    }
   }
 
   useEffect(() => {
@@ -32,6 +45,7 @@ export default function Feed() {
       const data = await reponse.json();
 
       setPosts(data);
+      setAllPosts(data);
     }
 
     fetchPosts();
@@ -39,21 +53,40 @@ export default function Feed() {
 
   return (
     <section className='feed'>
-      <form className='relative w-full flex-center'>
+      {!sessionOn && (
+        <div className='flex items-center justify-center gap-4 md:gap-8'>
+          <SignIn title="Get Started"/>
+          
+          <a href='#how-it-works' className='text-gray-500 black_btn bg-slate-300 text-2xl'>How It Works</a>
+        </div>
+      )}
+      {sessionOn && (
+        <form className='relative w-full flex-center'>
         <input
           type="text"
           placeholder="Search for a tag or username"
-          value={searchText}
           onChange={handleSearchChange}
           required
           className="search_input peer" 
         />
       </form>
+      )}
+      
 
       <PromptCardList
         data={posts}
         handleTagClick={() => {}}
       />
+
+      <div id='how-it-works' className='mt-10 w-full flex flex-col p-4 items-start justify-center gap-8'>  
+        <h1 className='head_text text-center'>
+          How It Works
+        </h1>      
+        <h2 className='text-[20px] font-semibold text-center'>1. Sign in with your Google account.</h2>
+        <h2 className='text-[20px] font-semibold text-center'>2. Add and Save your Ideas .</h2>
+        <h2 className='text-[20px] font-semibold text-center'>3. Share them with your community and collaborate.</h2>
+      </div>
+
     </section>
   )
 }
