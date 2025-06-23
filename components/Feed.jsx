@@ -67,7 +67,7 @@ export default function Feed() {
           placeholder="Search for a tag or username"
           onChange={handleSearchChange}
           required
-          className="search_input peer" 
+          className="search_input peer max-w-[600px]" 
         />
       </form>
       )}
