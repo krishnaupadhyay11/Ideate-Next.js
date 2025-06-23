@@ -61,13 +61,13 @@ export default function Feed() {
         </div>
       )}
       {sessionOn && (
-        <form className='relative w-full flex-center'>
+        <form className='relative w-full flex-center max-w-[600px]'>
         <input
           type="text"
           placeholder="Search for a tag or username"
           onChange={handleSearchChange}
           required
-          className="search_input peer max-w-[600px]" 
+          className="search_input peer" 
         />
       </form>
       )}
